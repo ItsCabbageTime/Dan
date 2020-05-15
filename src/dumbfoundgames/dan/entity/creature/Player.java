@@ -1,17 +1,23 @@
 package dumbfoundgames.dan.entity.creature;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import dumbfoundgames.dan.Launcher;
 import dumbfoundgames.dan.graphic.Assets;
+import dumbfoundgames.library.graphic.Animation;
 
 public class Player extends Creature
 {
+	private Animation walkRight, walkLeft, idle;
+	
 	public Player(float x, float y)
 	{
-		super(x, y, DEFUALTSIZE, DEFUALTSIZE);
+		super(x, y, 115, 140);
+		
+		walkRight = new Animation(100, Assets.gilbertWalkRight);
+		walkLeft = new Animation(100, Assets.gilbertWalkLeft);
+		idle = new Animation(10000, Assets.gilbertIdle);
 	}
 
 	@Override
@@ -20,15 +26,17 @@ public class Player extends Creature
 		getInputs();
 		move();
 		Launcher.HANDLER.getCamera().centerOnEntity(this);
+		walkRight.tick();
+		walkLeft.tick();
+		idle.tick();
 	}
 
 	@Override
 	public void render(Graphics g)
 	{
-		g.setColor(Color.RED);
-		g.fillRect((int) (x - Launcher.HANDLER.getCamera().getXOffset()), (int) (y - Launcher.HANDLER.getCamera().getYOffset()), width, height);
-		g.setColor(new Color(0, 0, 0, 200));
-		if(Launcher.HANDLER.getInputs().keys[KeyEvent.VK_Q]) g.drawImage(Assets.characterSelect, (int) (x + width / 2 - 128 - Launcher.HANDLER.getCamera().getXOffset()), (int) (y + height / 2 - 128 - Launcher.HANDLER.getCamera().getYOffset()), null);
+		if(xMove > 0) g.drawImage(walkRight.getCurrentFrame(), (int) (x - Launcher.HANDLER.getCamera().getXOffset()), (int) (y - Launcher.HANDLER.getCamera().getYOffset()), width, height, null);
+		else if(xMove < 0) g.drawImage(walkLeft.getCurrentFrame(), (int) (x - Launcher.HANDLER.getCamera().getXOffset()), (int) (y - Launcher.HANDLER.getCamera().getYOffset()), width, height, null);
+		else g.drawImage(idle.getCurrentFrame(), (int) (x - Launcher.HANDLER.getCamera().getXOffset()), (int) (y - Launcher.HANDLER.getCamera().getYOffset()), width, height, null);
 	}
 
 	@Override

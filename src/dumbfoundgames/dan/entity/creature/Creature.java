@@ -7,7 +7,7 @@ import dumbfoundgames.dan.entity.Entity;
 public abstract class Creature extends Entity
 {
 	public static final float DEFUALTSPEED = 6, DEFUALTJUMPSPEED = 8, DEFUALTFALLSPEED = 8;
-	public static final int DEFUALTSIZE = 64;
+	public static final int DEFUALTSIZEX = 64, DEFUALTSIZEY = 64;
 	
 	protected float speed, jumpSpeed, fallSpeed;
 	protected float xMove, jumpMove, fallMove;
