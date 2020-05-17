@@ -18,6 +18,9 @@ public class Player extends Creature
 		walkRight = new Animation(100, Assets.gilbertWalkRight);
 		walkLeft = new Animation(100, Assets.gilbertWalkLeft);
 		idle = new Animation(10000, Assets.gilbertIdle);
+		
+		bounds.x = 25;
+		bounds.width = 80;
 	}
 
 	@Override

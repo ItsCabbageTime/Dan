@@ -50,7 +50,7 @@ public class StartState extends State
 			}
 		}
 		
-		GraphicsHandler.drawString(g, "Togetherbound", 960, 540, true, Color.WHITE, new Font("Arial", Font.PLAIN, 200));
+		GraphicsHandler.drawString(g, "Dan", 960, 540, true, Color.WHITE, new Font("Arial", Font.PLAIN, 200));
 		GraphicsHandler.drawString(g, "Credits: 99", 960, 950, true, Color.WHITE, new Font("Arial", Font.PLAIN, 50));
 		
 		uiManager.render(g);
